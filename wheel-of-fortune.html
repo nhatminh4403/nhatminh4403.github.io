@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/fortune.css">
+</head>
+
+<body>
+    <fieldset class="ui-wheel-of-fortune">
+        <ul>
+            <li>$1000</li>
+            <li>$2000</li>
+            <li>$3000</li>
+            <li>$4000</li>
+            <li>$5000</li>
+            <li>$6000</li>
+            <li>$7000</li>
+            <li>$8000</li>
+            <li>$9000</li>
+            <li>$10000</li>
+            <li>$11000</li>
+            <li>$12000</li>
+        </ul>
+        <button type="button">SPIN</button>
+    </fieldset>
+    <script>
+
+        function wheelOfFortune(selector) {
+            const node = document.querySelector(selector);
+            if (!node) return;
+
+            const spin = node.querySelector('button');
+            const wheel = node.querySelector('ul');
+            let animation;
+            let previousEndDegree = 0;
+
+            spin.addEventListener('click', () => {
+                if (animation) {
+                    animation.cancel(); // Reset the animation if it already exists
+                }
+
+                const randomAdditionalDegrees = Math.random() * 720 + 1800;
+                const newEndDegree = previousEndDegree + randomAdditionalDegrees;
+
+                animation = wheel.animate([
+                    { transform: `rotate(${previousEndDegree}deg)` },
+                    { transform: `rotate(${newEndDegree}deg)` }
+                ], {
+                    duration: 5000,
+                    direction: 'normal',
+                    easing: 'cubic-bezier(0.440, -0.205, 0.000, 1.130)',
+                    fill: 'forwards',
+                    iterations: 1
+                });
+
+                previousEndDegree = newEndDegree;
+            });
+        }
+
+        // Usage
+        wheelOfFortune('.ui-wheel-of-fortune');
+    </script>
+</body>
+
+</html>

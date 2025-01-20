@@ -3,6 +3,7 @@
     align-items: center;
     justify-content: center;
 }
+
 .center-img--centering {
     position: relative;
     object-fit: cover;
@@ -16,6 +17,7 @@
 .img-border {
     border: 1px solid black;
 }
+
 .display-project {
     font-size: 1.4rem;
 }
